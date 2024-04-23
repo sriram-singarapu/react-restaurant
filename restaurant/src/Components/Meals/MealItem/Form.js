@@ -1,9 +1,20 @@
 import Input from "../../UI/Input";
 import classes from "./Form.module.css";
+import React, { useContext } from "react";
+import CartContext from "../../../store/cart-context";
 
 const Form = (props) => {
+  const cartContext = useContext(CartContext);
+
+  const addItemToCart = (event) => {
+    event.preventDefault();
+    // // cartCntx.items.push(props.item);
+    const quantity = document.getElementById("amount_" + props.id).value;
+    cartContext.addItem({ ...props.item, quantity: quantity });
+    console.log(cartContext.items);
+  };
   return (
-    <from className={classes.form}>
+    <form className={classes.form}>
       <Input
         label="Amount"
         input={{
@@ -15,8 +26,8 @@ const Form = (props) => {
           defaultValue: "1",
         }}
       />
-      <button>Add</button>
-    </from>
+      <button onClick={addItemToCart}>Add</button>
+    </form>
   );
 };
 
