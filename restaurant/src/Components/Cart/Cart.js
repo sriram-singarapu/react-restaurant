@@ -1,23 +1,24 @@
+import React, { useContext } from "react";
 import Modal from "../UI/Modal";
-import classes from "./Card.module.css";
+import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
-import { useContext } from "react";
+import CartItem from "./CartItem";
 
 const Cart = (props) => {
   const cartContext = useContext(CartContext);
 
-  // Helper function to calculate total quantity and amount
-  const { items } = cartContext;
+  const { items, removeItem, addItem } = cartContext;
 
   // Helper function to group items by id and calculate total quantity
   const groupItems = (items) => {
     const groupedItemsMap = new Map();
     items.forEach((item) => {
+      const quantity = parseInt(item.quantity); // Convert quantity to a number
       if (groupedItemsMap.has(item.id)) {
         const existingItem = groupedItemsMap.get(item.id);
-        existingItem.quantity += Number(item.quantity);
+        existingItem.quantity += quantity;
       } else {
-        groupedItemsMap.set(item.id, { ...item });
+        groupedItemsMap.set(item.id, { ...item, quantity });
       }
     });
     return Array.from(groupedItemsMap.values());
@@ -34,12 +35,31 @@ const Cart = (props) => {
 
   const groupedItems = groupItems(items);
 
+  const cartItemRemoveHandler = (groupedItem) => {
+    removeItem(groupedItem); // Call removeItem method from context
+  };
+
+  const cartItemAddHandler = (groupedItem) => {
+    const { id, name, price } = groupedItem;
+    addItem({
+      id,
+      name,
+      price,
+      quantity: 1, // Assuming adding 1 quantity per click
+    });
+  };
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {groupedItems.map((groupedItem) => (
         <li key={groupedItem.id}>
-          {groupedItem.name} x {groupedItem.quantity} - ₹
-          {(groupedItem.price * groupedItem.quantity).toFixed(2)}
+          <CartItem
+            name={groupedItem.name}
+            quantity={groupedItem.quantity}
+            price={groupedItem.price}
+            onRemove={() => cartItemRemoveHandler(groupedItem)}
+            onAdd={() => cartItemAddHandler(groupedItem)}
+          />
         </li>
       ))}
     </ul>

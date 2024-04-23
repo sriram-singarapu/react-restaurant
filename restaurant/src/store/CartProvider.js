@@ -8,8 +8,9 @@ const CartProvider = (props) => {
     setItems((prevItems) => [...prevItems, item]);
   };
 
-  const removeItemFromCartHandler = (id) => {};
-
+  const removeItemFromCartHandler = (itemId) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  };
   const cartContext = {
     items: items,
     totalAmount: 0,
