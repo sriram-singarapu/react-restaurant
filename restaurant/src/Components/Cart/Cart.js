@@ -35,8 +35,8 @@ const Cart = (props) => {
 
   const groupedItems = groupItems(items);
 
-  const cartItemRemoveHandler = (groupedItem) => {
-    removeItem(groupedItem); // Call removeItem method from context
+  const cartItemRemoveHandler = (id) => {
+    removeItem(id); // Call removeItem method from context with item id
   };
 
   const cartItemAddHandler = (groupedItem) => {
@@ -54,10 +54,11 @@ const Cart = (props) => {
       {groupedItems.map((groupedItem) => (
         <li key={groupedItem.id}>
           <CartItem
+            id={groupedItem.id} // Pass item id to CartItem
             name={groupedItem.name}
             quantity={groupedItem.quantity}
             price={groupedItem.price}
-            onRemove={() => cartItemRemoveHandler(groupedItem)}
+            onRemove={() => cartItemRemoveHandler(groupedItem.id)} // Pass item id to remove handler
             onAdd={() => cartItemAddHandler(groupedItem)}
           />
         </li>
