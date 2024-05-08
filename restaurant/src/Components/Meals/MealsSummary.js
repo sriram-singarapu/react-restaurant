@@ -3,14 +3,15 @@ import classes from "./MealsSummary.module.css";
 const MealsSummary = () => {
   return (
     <section className={classes.summary}>
-      <h2>Delicious Food, Delivered To You</h2>
+      <h2>Basic Food Order App</h2>
       <p>
-        Choose your favorite meal from our broad selection of available meals
-        and enjoy a delicious lunch or dinner at home.
+        Choose your favorite meal from our broad selection of available meals.
       </p>
       <p>
-        All our meals are cooked with high-quality ingredients, just-in-time and
-        of course by experienced chefs!
+        From mouthwatering curries to aromatic biryanis, our menu showcases
+        classic favorites as well as unique specialties. Whether you're a fan of
+        vegetarian delights or crave flavorful meat dishes, we have something to
+        satisfy every palate.
       </p>
     </section>
   );

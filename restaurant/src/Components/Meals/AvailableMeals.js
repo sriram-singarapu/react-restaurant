@@ -12,21 +12,21 @@ const DUMMY_MEALS = [
   },
   {
     id: "m2",
-    name: "Hyderabadi Biryani",
-    description: "Hyderabad specialty!",
-    price: 299,
+    name: "Hyderabadi Dum Biryani",
+    description: "Fragrant rice layered with marinated meat and spices",
+    price: 350,
   },
   {
     id: "m3",
-    name: " Burger",
-    description: "American, raw, meaty",
-    price: 190,
+    name: "Paneer Butter Masala",
+    description: "Soft paneer cubes in a rich tomato-based gravy",
+    price: 220,
   },
   {
     id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 18.99,
+    name: "Andhra Chicken Curry",
+    description: "Spicy chicken curry with red chilies and garlic",
+    price: 280,
   },
 ];
 

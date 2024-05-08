@@ -12,8 +12,10 @@ const Cart = (props) => {
   // Helper function to group items by id and calculate total quantity
   const groupItems = (items) => {
     const groupedItemsMap = new Map();
+    groupedItemsMap.id = new Date().toDateString();
     items.forEach((item) => {
-      const quantity = parseInt(item.quantity); // Convert quantity to a number
+      const quantity = parseInt(item.quantity);
+      // Convert quantity to a number
       if (groupedItemsMap.has(item.id)) {
         const existingItem = groupedItemsMap.get(item.id);
         existingItem.quantity += quantity;

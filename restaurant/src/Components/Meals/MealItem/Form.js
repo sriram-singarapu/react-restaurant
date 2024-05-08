@@ -8,10 +8,10 @@ const Form = (props) => {
 
   const addItemToCart = (event) => {
     event.preventDefault();
-    // // cartCntx.items.push(props.item);
+
     const quantity = document.getElementById("amount_" + props.id).value;
     cartContext.addItem({ ...props.item, quantity: quantity });
-    console.log(cartContext.items);
+    //console.log(cartContext.items);
   };
   return (
     <form className={classes.form}>
